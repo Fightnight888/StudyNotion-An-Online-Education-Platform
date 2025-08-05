@@ -9,6 +9,7 @@ const { convertSecondsToDuration } = require("../utils/secToDuration")
 // Method for updating a profile
 exports.updateProfile = async (req, res) => {
   try {
+    //get data 
     const {
       firstName = "",
       lastName = "",
@@ -59,15 +60,19 @@ exports.updateProfile = async (req, res) => {
 
 exports.deleteAccount = async (req, res) => {
   try {
+    // get data
     const id = req.user.id
     console.log(id)
     const user = await User.findById({ _id: id })
+
+    // data validation
     if (!user) {
       return res.status(404).json({
         success: false,
         message: "User not found",
       })
     }
+    
     // Delete Assosiated Profile with the User
     await Profile.findByIdAndDelete({
       _id: new mongoose.Types.ObjectId(user.additionalDetails),

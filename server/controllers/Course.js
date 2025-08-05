@@ -6,6 +6,8 @@ const User = require("../models/User")
 const { uploadImageToCloudinary } = require("../utils/imageUploader")
 const CourseProgress = require("../models/CourseProgress")
 const { convertSecondsToDuration } = require("../utils/secToDuration")
+
+
 // Function to create a new course
 exports.createCourse = async (req, res) => {
   try {
@@ -199,6 +201,7 @@ exports.editCourse = async (req, res) => {
     })
   }
 }
+
 // Get Course List
 exports.getAllCourses = async (req, res) => {
   try {
@@ -281,6 +284,7 @@ exports.getAllCourses = async (req, res) => {
 //     })
 //   }
 // }
+
 exports.getCourseDetails = async (req, res) => {
   try {
     const { courseId } = req.body

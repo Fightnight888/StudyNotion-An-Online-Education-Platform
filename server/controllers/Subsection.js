@@ -7,11 +7,11 @@ const { uploadImageToCloudinary } = require("../utils/imageUploader")
 exports.createSubSection = async (req, res) => {
   try {
     // Extract necessary information from the request body
-    const { sectionId, title, description } = req.body
+    const { sectionId, title, description , timeDuration} = req.body
     const video = req.files.video
 
     // Check if all necessary fields are provided
-    if (!sectionId || !title || !description || !video) {
+    if (!sectionId || !title || !description || !video || !timeDuration) {
       return res
         .status(404)
         .json({ success: false, message: "All Fields are Required" })
@@ -23,7 +23,8 @@ exports.createSubSection = async (req, res) => {
       video,
       process.env.FOLDER_NAME
     )
-    console.log(uploadDetails)
+    console.log(uploadDetails);
+    
     // Create a new sub-section with the necessary information
     const SubSectionDetails = await SubSection.create({
       title: title,
@@ -40,7 +41,9 @@ exports.createSubSection = async (req, res) => {
     ).populate("subSection")
 
     // Return the updated section in the response
-    return res.status(200).json({ success: true, data: updatedSection })
+    return res.status(200).json({ success: true,
+    message : "Sub section cretad successfully" ,   
+     data: updatedSection })
   } catch (error) {
     // Handle any errors that may occur during the process
     console.error("Error creating new sub-section:", error)
