@@ -13,6 +13,6 @@ server/.env
 npm-debug.log
 yarn-error.log
 
-# VS Code settings
+# VS Code
 .vscode/
 node_modules
